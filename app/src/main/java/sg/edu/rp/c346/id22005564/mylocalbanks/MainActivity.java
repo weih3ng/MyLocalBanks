@@ -75,12 +75,16 @@ TextView textView4;
         if (v == ButtonDBS) {
             menu.add(0, 0, 0, "Open DBS Website");
             menu.add(0, 1, 1, "Contact DBS");
+            menu.add(0, 6, 6, "Toggle Favourite");
+
         } else if (v == ButtonOCBC) {
             menu.add(0, 2, 2, "Open OCBC Website");
             menu.add(0, 3, 3, "Contact OCBC");
+            menu.add(0, 6, 6, "Toggle Favourite");
         } else if (v == ButtonUOB) {
             menu.add(0, 4, 4, "Open UOB Website");
             menu.add(0, 5, 5, "Contact UOB");
+            menu.add(0, 6, 6, "Toggle Favourite");
         }
     }
 
@@ -105,6 +109,17 @@ TextView textView4;
             case 5:
                 contactBank("UOB", "18002222121");
                 return true;
+            case 6:
+                toggleFavourite("DBS", "18001111111");
+                return true;
+            case 7:
+                toggleFavourite("OCBC", "18003633333");
+                return true;
+            case 8:
+                toggleFavourite("UOB", "18002222121");
+                return true;
+
+
             default:
                 return super.onContextItemSelected(item);
         }
@@ -121,5 +136,48 @@ TextView textView4;
         intent.setData(Uri.parse("tel:" + contactNumber));
         startActivity(intent);
     }
+    private void toggleFavourite(String bankName, String contactNumber) {
+        int black = 0xFF000000; // Black color
+
+        if (bankName.equals("DBS")) {
+            if (textView4.getCurrentTextColor() == black) {
+
+                textView4.setTextColor(0xFFFF0000);
+                textView5.setTextColor(black);
+                textView6.setTextColor(black);
+            } else {
+                textView4.setTextColor(black); // Red color
+                textView5.setTextColor(black);
+                textView6.setTextColor(black);
+            }
+        } else if (bankName.equals("OCBC")) {
+            if (textView5.getCurrentTextColor() == black) {
+
+                textView4.setTextColor(black);
+                textView5.setTextColor(0xFFFF0000);
+                textView6.setTextColor(black);
+            } else {
+                textView4.setTextColor(black);
+                textView5.setTextColor(black); // Red color
+                textView6.setTextColor(black);
+            }
+        } else if (bankName.equals("UOB")) {
+            if (textView6.getCurrentTextColor() == black) {
+
+                textView4.setTextColor(black);
+                textView5.setTextColor(black);
+                textView6.setTextColor(0xFFFF0000);
+            } else {
+                textView4.setTextColor(black);
+                textView5.setTextColor(black);
+                textView6.setTextColor(black); // Red color
+            }
+        }
+    }
+
+
+
+
+
 }
 
